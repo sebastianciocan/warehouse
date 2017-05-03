@@ -209,6 +209,9 @@ public class WarehouseOperations {
 			else{
 				System.out.println("The expiration date is far far away!");
 			}
+			if(diffDays < (-1)){
+				System.out.println("Conflict!");
+			}
 
 
 		}
