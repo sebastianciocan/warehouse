@@ -27,7 +27,7 @@ public class WarehouseOperations {
 		int rand = new Random().nextInt(6);
 
 		if (rand == 0) {
-			int appleUnit = (new Random().nextInt(250 - 50) + 100);
+			int appleUnit = (new Random().nextInt(250 - 50) + 20);
 			result = new Package("fruits", "apple", "10.05.2017", "20.08.2017",6, (6 * Integer.valueOf(appleUnit)) , appleUnit, fruitAttributes);
 		}
 		if (rand == 1) {
