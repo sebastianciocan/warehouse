@@ -27,7 +27,7 @@ public class WarehouseOperations {
 		int rand = new Random().nextInt(6);
 
 		if (rand == 0) {
-			int appleUnit = (new Random().nextInt(250 - 50) + 50);
+			int appleUnit = (new Random().nextInt(250 - 50) + 100);
 			result = new Package("fruits", "apple", "10.05.2017", "20.08.2017",6, (6 * Integer.valueOf(appleUnit)) , appleUnit, fruitAttributes);
 		}
 		if (rand == 1) {
@@ -206,15 +206,10 @@ public class WarehouseOperations {
 			if(diffDays < 0){
 				result.fruitslist.remove(fruitItem);
 			}
-			if(diffDays < (-1)){
-				System.out.println("Salut");
-			}	
 			else{
 				System.out.println("The expiration date is far far away!");
 			}
-			if(diffDays < (-1)){
-				System.out.println("Conflict!");
-			}
+
 
 
 		}
