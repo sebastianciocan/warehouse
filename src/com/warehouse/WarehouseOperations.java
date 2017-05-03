@@ -205,9 +205,6 @@ public class WarehouseOperations {
 			}
 			if(diffDays < 0){
 				result.fruitslist.remove(fruitItem);
-			}
-			if(diffDays < (-1)){
-				System.out.println("Salut");
 			}	
 			else{
 				System.out.println("The expiration date is far far away!");
