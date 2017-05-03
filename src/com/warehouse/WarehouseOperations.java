@@ -151,12 +151,15 @@ public class WarehouseOperations {
 		}
 		return result;
 	}
-	
+
+	public static void main(String[] args){
+		System.out.println(applyDiscount(100, 0.15));
+	}
 
 
 	public static double applyDiscount(double unitTotalPrice, double discount){
 		return unitTotalPrice - (unitTotalPrice * discount);
-}
+	}
 
 	public static double calculateDiscount(String expirationDate, String category) throws ParseException {
 		SummaryProducModel fruitItem = new SummaryProducModel();
