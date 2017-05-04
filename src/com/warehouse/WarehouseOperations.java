@@ -2,11 +2,20 @@ package com.warehouse;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import static java.time.temporal.ChronoUnit.DAYS;
+import java.time.format.DateTimeFormatter;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import java.util.concurrent.ThreadLocalRandom;
+
 
 import com.warehouse.data.Package;
 import com.warehouse.data.SummaryDataModel;
@@ -14,7 +23,37 @@ import com.warehouse.data.SummaryProducModel;
 
 public class WarehouseOperations {
 
-	public static Package randomPackageGenerator() {
+
+	public static LocalDate randomEntryDateGeneration(){
+		Random generate = new Random();
+		LocalDate currentDate = LocalDate.now();
+		LocalDate entryDate = LocalDate.now().minusMonths(6);
+
+
+		int days = (int) DAYS.between(entryDate,currentDate );
+
+
+
+
+
+		LocalDate randomEntryDate = entryDate.plusDays(generate.nextInt(days));
+		return randomEntryDate;
+	}
+
+
+	public static String calculateExpirationDate(LocalDate entryDate) throws ParseException{
+
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+
+
+		LocalDate expiration = entryDate.plusMonths(6);
+		return expiration.format(df);
+
+	}
+
+	public static Package randomPackageGenerator() throws ParseException {
+
 
 		Package result = null;
 		Map<String, String> fruitAttributes = new HashMap<String, String>();
@@ -28,29 +67,29 @@ public class WarehouseOperations {
 
 		if (rand == 0) {
 			int appleUnit = (new Random().nextInt(250 - 50) + 50);
-			result = new Package("fruits", "apple", "10.05.2017", "10.05.2017",6, (6 * appleUnit) , appleUnit, fruitAttributes);
+			result = new Package("fruits", "apple", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),6, (6 * appleUnit) , appleUnit, fruitAttributes);
 		}
 		if (rand == 1) {
 			int potatosUnit = (new Random().nextInt(25 - 15) + 15);
-			result = new Package("vegetables", "potatoes", "10.10.2017", "07.05.2017",15, (15 * potatosUnit), potatosUnit,
+			result = new Package("vegetables", "potatoes", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),15, (15 * potatosUnit), potatosUnit,
 					vegetablesAttributes);
 		}
 		if (rand == 2) {
 			int onionsUnit = (new Random().nextInt(25 - 15) + 15);
-			result = new Package("vegetables", "onions", "10.10.17", "28.05.2017",2.5, (2.5 * onionsUnit), onionsUnit,
+			result = new Package("vegetables", "onions", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),2.5, (2.5 * onionsUnit), onionsUnit,
 					vegetablesAttributes);
 		}
 		if (rand == 3) {
 			int orangeUnit = (new Random().nextInt(25 - 15) + 15);
-			result = new Package("fruits", "orange", "10.02.17", "29.05.2017",13, (13 * orangeUnit), orangeUnit, fruitAttributes);
+			result = new Package("fruits", "orange", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),13, (13 * orangeUnit), orangeUnit, fruitAttributes);
 		}
 		if (rand == 4) {
 			int peachesUnit = (new Random().nextInt(60 - 30) + 30);
-			result = new Package("fruits", "peaches", "10.01.17", "27.06.2019",30, (30 * peachesUnit), peachesUnit, fruitAttributes);
+			result = new Package("fruits", "peaches", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),30, (30 * peachesUnit), peachesUnit, fruitAttributes);
 		}
 		if (rand == 5) {
 			int crackerUnit = (new Random().nextInt(10));
-			result = new Package("others", "cracker", "10.10.17", "01.01.2017",2, (2 * crackerUnit),crackerUnit);
+			result = new Package("others", "cracker", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),2, (2 * crackerUnit),crackerUnit);
 
 		}
 		return result;
@@ -142,7 +181,7 @@ public class WarehouseOperations {
 					otherItem.producTotalPrice = applyDiscount(packageNow.productDetails.price, otherItem.productDiscout);
 					otherItem.productDiscoutValue = (packageNow.productDetails.price - otherItem.producTotalPrice);
 				}
-				result.otherTotalQty += (otherItem.producUnitTotal);
+				result.ohterTotalQty += (otherItem.producUnitTotal);
 				result.otherTotalPrice += (otherItem.producTotalPrice);
 				result.otherlist.add(otherItem);
 
@@ -151,6 +190,7 @@ public class WarehouseOperations {
 		}
 		return result;
 	}
+
 
 	public static void main(String[] args){
 		System.out.println(applyDiscount(100, 0.15));
@@ -211,8 +251,6 @@ public class WarehouseOperations {
 				System.out.println("The expiration date is far far away!");
 			}
 
-
-
 		}
 
 		if (category.contains("vegetable")) {
@@ -246,6 +284,5 @@ public class WarehouseOperations {
 		return discount;
 
 	}
-
 
 }

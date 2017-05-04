@@ -13,8 +13,10 @@ public class SummaryDataModel {
 	public double vegetaTotalPrice = 0;
 	public List<SummaryProducModel> vegetaList = new ArrayList<SummaryProducModel>();
 	
-	public double otherTotalQty = 0;
+
+	public double ohterTotalQty = 0;
 	public double otherTotalPrice = 0;
 	public List<SummaryProducModel> otherlist = new ArrayList<SummaryProducModel>();
+
 
 }
