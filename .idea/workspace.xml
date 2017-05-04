@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c1c9889-558a-4565-b4c8-66bead24678c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/warehouse/WarehouseOperations.java" afterPath="$PROJECT_DIR$/src/com/warehouse/WarehouseOperations.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="WarehouseOperations.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/warehouse/WarehouseOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1721">
-              <caret line="185" column="8" lean-forward="false" selection-start-line="185" selection-start-column="8" selection-end-line="185" selection-end-column="8" />
+            <state relative-caret-position="548">
+              <caret line="81" column="91" lean-forward="false" selection-start-line="81" selection-start-column="91" selection-end-line="81" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -790,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/warehouse/WarehouseOperations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1721">
-          <caret line="185" column="8" lean-forward="false" selection-start-line="185" selection-start-column="8" selection-end-line="185" selection-end-column="8" />
+        <state relative-caret-position="548">
+          <caret line="81" column="91" lean-forward="false" selection-start-line="81" selection-start-column="91" selection-end-line="81" selection-end-column="91" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

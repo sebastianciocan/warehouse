@@ -79,7 +79,7 @@ public class WarehouseOperations {
 
 		}
 		else{
-			System.out.println("Package was not created!");
+			System.out.println("Package was not created because the conditions were not met!");
 		}
 		return result;
 	}
