@@ -28,33 +28,19 @@ public class WarehouseOperations {
 		Random generate = new Random();
 		LocalDate currentDate = LocalDate.now();
 		LocalDate entryDate = LocalDate.now().minusMonths(6);
-
-
 		int days = (int) DAYS.between(entryDate,currentDate );
-
-
-
-
-
 		LocalDate randomEntryDate = entryDate.plusDays(generate.nextInt(days));
 		return randomEntryDate;
 	}
 
 
 	public static String calculateExpirationDate(LocalDate entryDate) throws ParseException{
-
 		DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-
-
 		LocalDate expiration = entryDate.plusMonths(6);
 		return expiration.format(df);
-
 	}
 
 	public static Package randomPackageGenerator() throws ParseException {
-
-
 		Package result = null;
 		Map<String, String> fruitAttributes = new HashMap<String, String>();
 		fruitAttributes.put("nutrition", "10");
@@ -92,14 +78,14 @@ public class WarehouseOperations {
 			result = new Package("others", "cracker", randomEntryDateGeneration(), calculateExpirationDate(randomEntryDateGeneration()),2, (2 * crackerUnit),crackerUnit);
 
 		}
+		else{
+			System.out.println("Package was not created!");
+		}
 		return result;
 	}
 
 	public static SummaryDataModel generateSummary(List<Package> warehouseList) throws ParseException {
-
 		SummaryDataModel result = new SummaryDataModel();
-
-
 		for (Package packageNow : warehouseList) {
 			if (packageNow.productDetails.category.toLowerCase().trim().contentEquals("fruits")) {
 				SummaryProducModel fruitItem = new SummaryProducModel();
@@ -112,8 +98,6 @@ public class WarehouseOperations {
 					fruitItem.productDiscout = calculateDiscount((packageNow.expirationDate),"fruits");
 					fruitItem.producTotalPrice = applyDiscount(packageNow.productDetails.price, fruitItem.productDiscout);
 					fruitItem.productDiscoutValue = (packageNow.productDetails.price - fruitItem.producTotalPrice);
-
-
 				}
 				if (packageNow.productDetails.name.toLowerCase().trim().contentEquals("peaches")) {
 					fruitItem.producUnitTotal = (packageNow.productDetails.measure) * 6;
@@ -138,7 +122,6 @@ public class WarehouseOperations {
 				result.fruitTotalPrice += (fruitItem.producTotalPrice);
 				result.fruitslist.add(fruitItem);
 			}
-
 			if (packageNow.productDetails.category.toLowerCase().trim().contentEquals("vegetables")) {
 				SummaryProducModel vegetaItem = new SummaryProducModel();
 				if (packageNow.productDetails.name.toLowerCase().trim().contentEquals("potatoes")) {
@@ -149,7 +132,6 @@ public class WarehouseOperations {
 					vegetaItem.productDiscout = calculateDiscount((packageNow.expirationDate),"vegetables");
 					vegetaItem.producTotalPrice = applyDiscount(packageNow.productDetails.price, vegetaItem.productDiscout);
 					vegetaItem.productDiscoutValue = (packageNow.productDetails.price - vegetaItem.producTotalPrice);
-
 				}
 				if (packageNow.productDetails.category.toLowerCase().trim().contentEquals("vegetables")) {
 					if (packageNow.productDetails.name.toLowerCase().trim().contentEquals("onions")) {
@@ -160,16 +142,12 @@ public class WarehouseOperations {
 						vegetaItem.productDiscout = calculateDiscount((packageNow.expirationDate),"vegetables");
 						vegetaItem.producTotalPrice = applyDiscount(packageNow.productDetails.price, vegetaItem.productDiscout);
 						vegetaItem.productDiscoutValue = (packageNow.productDetails.price - vegetaItem.producTotalPrice);
-
-
 					}
 				}
 				result.vegetaTotalQty += (vegetaItem.producUnitTotal);
 				result.vegetaTotalPrice += (vegetaItem.producTotalPrice);
 				result.vegetaList.add(vegetaItem);
-
 			}
-
 			if (packageNow.productDetails.category.toLowerCase().trim().contentEquals("others")) {
 				SummaryProducModel otherItem = new SummaryProducModel();
 				if (packageNow.productDetails.name.toLowerCase().trim().contentEquals("cracker")) {
@@ -184,18 +162,14 @@ public class WarehouseOperations {
 				result.ohterTotalQty += (otherItem.producUnitTotal);
 				result.otherTotalPrice += (otherItem.producTotalPrice);
 				result.otherlist.add(otherItem);
-
 			}
-
 		}
 		return result;
 	}
 
-
 	public static void main(String[] args){
 		System.out.println(applyDiscount(100, 0.15));
 	}
-
 
 	public static double applyDiscount(double unitTotalPrice, double discount){
 		return unitTotalPrice - (unitTotalPrice * discount);
@@ -209,10 +183,8 @@ public class WarehouseOperations {
 		SimpleDateFormat diff = new SimpleDateFormat("dd");
 		Date expiration = df.parse(expirationDate);
 		Date currentDate = new Date();
-
-
+		
 		long diffDays = ((new java.util.Date()).getTime() - expiration.getTime()) / -(1000 * 60 * 60 * 24);
-
 
 		double discountPrice = 0;
 		String discountPercentage = "";
