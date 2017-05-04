@@ -1,7 +1,10 @@
-.classpath
-*.class
+*.class  
 *.jar
 *.project
+.project
+.classpath
 /bin/
 /.settings/
-/target/
+/target/  
+/.idea/
+*.idea/
